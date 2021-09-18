@@ -13,16 +13,28 @@ def home(request):
 def contact(request):
     if request.method=='POST':
         name=request.POST['name']
-        email=request.POST['email']
-        phone=request.POST['phone']
-        content=request.POST['content']
-        print(name,email,phone,content)
+        birthdate=request.POST['birthdate']
+        aadhar=request.POST['aadhar']
+        address=request.POST['address']
+        gender=request.POST['gender']
+        department=request.POST['department']
+        specialization=request.POST['specialization']
+        category=request.POST['category']
+        documents=request.POST['documents']
+        passport=request.POST['passport']
+        notes=request.POST['notes']
+        #email=request.POST['email']
+        #phone=request.POST['phone']
+        #content=request.POST['content']
+        #print(name,birthdate,aadhar)
 
-        if len(name)<2 or len(email)<3 or len(phone)<10 or len(content)<4:
-            messages.error(request,"please fill the form correctly")
-        else:
-            messages.success(request, "Form submitted successfully")
-        contact=Contact(name=name,email=email,phone=phone,content=content)
+        #if len(name)<2 or len(email)<3 or len(phone)<10 or len(content)<4:
+        #    messages.error(request,"please fill the form correctly")
+        #else:
+        #    messages.success(request, "Form submitted successfully")
+        print(name,aadhar,notes)
+        contact=Contact(name=name,birthdate=birthdate,aadhar=aadhar,address=address,gender=gender,
+        department=department,specialization=specialization,category=category,documents=documents,passport=passport)
         contact.save()
     return render(request, 'home/contact.html')
 

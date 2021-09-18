@@ -11,8 +11,8 @@ class Contact(models.Model):
     department=models.CharField(max_length=20)
     specialization=models.CharField(max_length=20)
     category=models.CharField(max_length=20)
-    documents=models.FileField()
-    passport=models.FileField()
+    documents=models.CharField(max_length=20)
+    passport=models.CharField(max_length=20)
     notes=models.CharField(max_length=255)
 
     def __str__(self):
