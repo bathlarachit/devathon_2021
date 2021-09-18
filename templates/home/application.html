@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{%block applicationactive%}active{% endblock applicationactive %}
+
+{% block body %} 
+
+<div class="container my-4">
+
+<h3> Application Form</h3>
+<form method="post" action="/application" enctype="multipart/form-data">
+{% csrf_token %}
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input type="text" class="form-control" id="name" name="name" aria-describedby="name">
+  </div>
+    <div class="mb-3">
+    <label for="birthdate" class="form-label">Date of Birth</label>
+    <input type="date" class="form-control" id="birthdate" name="birthdate" aria-describedby="birthdate">
+  </div>
+    <div class="mb-3">
+    <label for="aadhar" class="form-label">Aadhar Card Number</label>
+    <input type="text" class="form-control" id="aadhar" name="aadhar" aria-describedby="aadhar">
+  </div>
+    <div class="mb-3">
+    <label for="address" class="form-label">Address</label>
+    <textarea class="form-control" name="address" id="address" name="address" cols="30" rows="3"></textarea>
+  </div>
+  
+    <div class="mb-3">
+    <h5>Gender</h5>
+<div class="radio">
+  <label><input type="radio" name="gender" id="gender" value="Male">Male</label>
+</div>
+<div class="radio">
+  <label><input type="radio" name="gender" id="gender" value="Female">Female</label>
+</div>
+<div class="radio">
+  <label><input type="radio" name="gender" id="gender" value="Other">Prefer Not to Say</label>
+</div>
+</div>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="inputGroupSelect01">Department</label>
+  </div>
+  <select class="custom-select" id="department" name="department">
+    <option selected>Choose...</option>
+    {% for i in subjects %} 
+    <option> {{ i }}</option>
+    {% endfor %}
+  </select>
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="inputGroupSelect01">Specialization</label>
+  </div>
+  <select class="custom-select" id="specialization" name="specialization">
+    <option selected>Choose...</option>
+  </select>
+</div>
+
+    <div class="mb-3">
+    <h5>Category</h5>
+<div class="radio">
+  <label><input type="radio" name="category" id="category" value="SC">SC</label>
+</div>
+<div class="radio">
+  <label><input type="radio" name="category" id="category" value="ST">ST</label>
+</div>
+<div class="radio">
+  <label><input type="radio" name="category" id="category" value="OBC">OBC</label>
+</div>
+<div class="radio">
+  <label><input type="radio" name="category" id="category" value="General">General</label>
+</div>
+</div>
+
+   <div class="mb-3">
+    <h5>PWD</h5>
+<div class="radio">
+  <label><input type="radio" name="pwd" id="pwd" value="yes">Applicable</label>
+</div>
+<div class="radio">
+  <label><input type="radio" name="pwd" id="pwd" value="no">Not applicable</label>
+</div>
+</div>
+
+  <div class="mb-3">
+    <label for="documents">Upload Documents :</label>
+    <input type="file" class="form-control-file" id="documents" name="documents">
+  </div>
+
+
+      <div class="mb-3">
+    <label for="photo">Upload Passport Size Photo :</label>
+    <input type="file" class="form-control-file" id="photo" name="photo">
+  </div>
+
+      <div class="mb-3">
+    <label for="notes" class="form-label">Notes</label>
+    <textarea class="form-control" name="notes" id="notes" name="notes" cols="30" rows="5"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+        $(document).ready(function(){
+
+            $('#inputGroupSelect01').empty();
+
+            var csStrings = JSON.parse('{{ json_cs_strings | escapejs }}');
+            var bStrings = JSON.parse('{{ json_b_strings | escapejs }}');
+
+            //console.log(csStrings)
+            //console.log(bStrings)
+
+            $('#department').on('change', function(){
+
+                var department = $('#department').val();
+
+                if(department == 'Computer Science'){
+
+                    $('#specialization').empty();
+
+                    var length = csStrings.length;
+                    var i;
+                    for(i=0; i < length; i++){
+
+                        specialization = csStrings[i];
+                        $('#specialization').append(
+                           `
+                            <option value="${specialization}">
+                                ${specialization}
+                            </option>
+                            `
+                        );
+                    }
+                }
+                else if(department == 'Electrical'){
+
+                    $('#specialization').empty();
+
+                    var length = bStrings.length;
+                    var i;
+                    for(i=0; i < length; i++){
+
+                        specialization = bStrings[i];
+                        $('#specialization').append(
+
+                            `
+                            <option value="${specialization}">
+                                ${specialization}
+                            </option>
+                            `
+                        );
+                    }
+                }
+                else{
+                    $('#specialization').empty();
+                }
+            });
+        });
+    </script>
+
+{% endblock body %}

@@ -1,42 +1,74 @@
 from django.shortcuts import render,HttpResponse,redirect
-from student.models import Contact
+from student.models import Application
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
-
+import json
 # Create your views here.
-
 
 def home(request):
     return render(request,'home/home.html')
 
-def contact(request):
-    if request.method=='POST':
-        name=request.POST['name']
-        birthdate=request.POST['birthdate']
-        aadhar=request.POST['aadhar']
-        address=request.POST['address']
-        gender=request.POST['gender']
-        department=request.POST['department']
-        specialization=request.POST['specialization']
-        category=request.POST['category']
-        documents=request.POST['documents']
-        passport=request.POST['passport']
-        notes=request.POST['notes']
-        #email=request.POST['email']
-        #phone=request.POST['phone']
-        #content=request.POST['content']
-        #print(name,birthdate,aadhar)
+def application(request):
+        if request.user.is_authenticated:
+            username = request.user.username
+            user=username
 
-        #if len(name)<2 or len(email)<3 or len(phone)<10 or len(content)<4:
-        #    messages.error(request,"please fill the form correctly")
-        #else:
-        #    messages.success(request, "Form submitted successfully")
-        print(name,aadhar,notes)
-        contact=Contact(name=name,birthdate=birthdate,aadhar=aadhar,address=address,gender=gender,
-        department=department,specialization=specialization,category=category,documents=documents,passport=passport)
-        contact.save()
-    return render(request, 'home/contact.html')
+        details=Application.objects.filter(user=user)
+        #print(details)
+
+        COMPUTER_SCIENCE = 'Computer Science'
+        ELECTRICAL = 'Electrical'
+
+        CS_1 = 'DSA'
+        CS_2 = 'Big Data'
+        CS_3 = 'Machine Learning'
+        EE_1 = 'Controllers'
+        EE_2 = 'MicroControllers'
+        EE_3 = 'Miniprocessors'
+
+        SUBJECT_CHOICES =[COMPUTER_SCIENCE,ELECTRICAL]
+
+        cs_strings = [CS_1,CS_2,CS_3]
+        b_strings = [EE_1,EE_2,EE_3]
+
+        json_cs_strings = json.dumps(cs_strings)
+        json_b_strings = json.dumps(b_strings)
+
+        context={}
+        context['json_cs_strings'] = json_cs_strings
+        context['json_b_strings'] = json_b_strings 
+        context['subjects']=SUBJECT_CHOICES
+
+        if request.method=='POST':
+            name=request.POST['name']
+            birthdate=request.POST['birthdate']
+            aadhar=request.POST['aadhar']
+            address=request.POST['address']
+            gender=request.POST['gender']
+            department=request.POST['department']
+            specialization=request.POST['specialization']
+            category=request.POST['category']
+            pwd=request.POST['pwd']
+            documents=request.FILES.get('documents', None)
+            photo=request.FILES.get('photo', None)
+            notes=request.POST['notes']
+    
+            if len(name)<2:
+                messages.error(request,"Length of name should be greater than 2. Please fill the form correctly")
+            elif len(aadhar)!=12:
+                messages.error(request,"Incorrect aadhar number. Please fill the form correctly")
+            elif file_extension != '.pdf':
+                messages.error(request,"wrong document format")
+            else:
+                messages.success(request, "Form submitted successfully. Please fill the form correctly")
+            #print(name,aadhar,notes)
+            submitted='yes'
+            application=Application(name=name,birthdate=birthdate,aadhar=aadhar,address=address,gender=gender,
+            department=department,specialization=specialization,category=category,documents=documents,photo=photo,submitted=submitted,
+            user=user,notes=notes,pwd=pwd)
+            application.save()
+        return render(request, 'home/application.html', context)
 
 def handleSignup(request):
     if request.method == 'POST':
