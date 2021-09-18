@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{%block contactactive%}active{% endblock contactactive %}
+
+{% block body %} 
+
+<div class="container my-4">
+<h3> Application Form</h3>
+<form method="post" action="/contact" >
+{% csrf_token %}
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input type="text" class="form-control" id="name" name="name" aria-describedby="name">
+  </div>
+    <div class="mb-3">
+    <label for="birthdate" class="form-label">Birthdate</label>
+    <input type="date" class="form-control" id="birthdate" name="birthdate" aria-describedby="birthdate">
+  </div>
+    <div class="mb-3">
+    <label for="aadhar" class="form-label">Aadhar</label>
+    <input type="text" class="form-control" id="aadhar" name="aadhar" aria-describedby="aadhar">
+  </div>
+    <div class="mb-3">
+    <label for="address" class="form-label">Address</label>
+    <textarea class="form-control" name="address" id="address" name="address" cols="30" rows="3"></textarea>
+  </div>
+    <div class="mb-3">
+    <label for="content" class="form-label">Gender</label>
+    <textarea class="form-control" name="content" id="content" name="content" cols="30" rows="5"></textarea>
+  </div>
+    <div class="mb-3">
+    <label for="department" class="form-label">Department</label>
+    <input type="text" class="form-control" id="department" name="department" aria-describedby="department">
+  </div>
+ <div class="mb-3">
+    <label for="specialization" class="form-label">Specialization</label>
+       <input type="text" class="form-control" id="specialization" name="specialization" aria-describedby="specialization">
+  </div>
+      <div class="mb-3">
+    <label for="category" class="form-label">Category</label>
+    <textarea class="form-control" name="category" id="category" name="content" cols="30" rows="5"></textarea>
+  </div>
+        <div class="mb-3">
+    <label for="content" class="form-label">PWD</label>
+    <textarea class="form-control" name="content" id="content" name="content" cols="30" rows="5"></textarea>
+  </div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="inputGroupSelect01">Options</label>
+  </div>
+  <select class="custom-select" id="inputGroupSelect01">
+    <option selected>Department</option>
+    <option value="1">CSE</option>
+    <option value="2">ECE</option>
+    <option value="3">EEE</option>
+    <option value="4">MECH</option>
+    <option value="3">CIVIL</option>
+    <option value="3">CHEM</option>
+    <option value="3">BIOTECH</option>
+  </select>
+</div>
+<div class="mb-3">
+<label for="category" class="form-label">Specialization</label>
+ <input type="text" class="form-control" id="specialization" name="specialization" aria-describedby="specialization" 
+ value="marked" disabled="disabled">
+  </div>
+      <div class="mb-3">
+    <label for="content" class="form-label">document</label>
+    <textarea class="form-control" name="content" id="content" name="content" cols="30" rows="5"></textarea>
+  </div>
+      <div class="mb-3">
+    <label for="content" class="form-label">passport pic</label>
+    <textarea class="form-control" name="content" id="content" name="content" cols="30" rows="5"></textarea>
+  </div>
+      <div class="mb-3">
+    <label for="notes" class="form-label">Notes</label>
+    <textarea class="form-control" name="notes" id="notes" name="notes" cols="30" rows="5"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+
+{% endblock body %}
