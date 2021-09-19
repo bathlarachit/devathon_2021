@@ -27,6 +27,7 @@ urlpatterns = [
     path('rejected_list/',views.Rejected.as_view(),name='r_list'),
     path('confirmed_list/',views.Confirmed.as_view(),name='c_list'),
     path('register/<int:pk>/',views.Registration,name='register'),
+    path('accept_detail/<int:pk>/',views.Accepted_detail,name='detail'),
     path('Rejected_detail/<int:pk>/',views.Rejected_detail,name='r_detail'),
     path('student/', include('student.urls')),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

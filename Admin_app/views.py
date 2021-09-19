@@ -75,3 +75,8 @@ def Rejected_detail(request,pk):
 
     qs = models.Rejected.objects.get(id=pk)
     return render(request,'eapp/reject.html',{'list':qs})
+def Accepted_detail(request,pk):
+    qs = models.Requests.objects.get(id=pk)
+    code = models.Accepted.objects.get(user=qs.user)
+
+    return render(request,'eapp/accept_details.html',{"list":qs,"code":code})

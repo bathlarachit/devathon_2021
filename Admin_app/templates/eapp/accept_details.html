@@ -1,0 +1,36 @@
+{% extends 'eapp/base.html' %}
+
+{% block body  %}
+
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+<strong>
+  <p>
+    Registration Number- {{code.Registration_Number}}
+  </p>
+</strong>
+</div>
+
+<p>
+  {{list.req_no.name}}
+</p>
+<p>
+  {{list.req_no.birthdate}}
+</p>
+<p>
+  {{list.req_no.address}}
+</p>
+<p>
+  {{list.req_no.aadhar}}
+</p>
+<p>
+  {{list.req_no.gender}}
+</p>
+<p>
+  {{list.req_no.department}}
+</p>
+<p>
+  {{list.req_no.specialization}}
+</p>
+
+
+{% endblock %}
