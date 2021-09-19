@@ -106,7 +106,12 @@
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 {% else %}
-<p>Your request is pending you cannot fill the form again</p>
+<p>
+  <strong>
+    {{msg }}
+    {{code.Registration_Number}}
+  </strong>
+</p>
 {% endif %}
 </div>
 
