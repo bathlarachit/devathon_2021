@@ -16,9 +16,17 @@ def application(request):
         if request.user.is_authenticated:
             vis = True
             qs = models.Requests.objects.filter(user=request.user,status='pending')
-            if qs:
+            qs2 = models.Requests.objects.filter(user=request.user,status='confirmed')
+            if qs or qs2:
                 vis=False
-                return render(request,'home/application.html',{"vis":vis})
+                msg=''
+                code =''
+                if qs2:
+                    msg='Your Request has been accepted, Your registraton Number is -'
+                    code = models.Accepted.objects.get(user=request.user)
+                else:
+                    msg='Your request is still pending wait'
+                return render(request,'home/application.html',{"vis":vis,"code":code,"msg":msg})
 
             username = request.user.username
             user=username
@@ -48,7 +56,7 @@ def application(request):
         context['json_cs_strings'] = json_cs_strings
         context['json_b_strings'] = json_b_strings
         context['subjects']=SUBJECT_CHOICES
-        context['vis']=vis
+
 
         if request.method=='POST':
             name=request.POST['name']
@@ -78,6 +86,7 @@ def application(request):
             department=department,specialization=specialization,category=category,documents=documents,photo=photo,submitted=submitted,
             user=request.user,notes=notes,pwd=pwd)
             application.save()
+            context['vis']=False
             req = models.Requests.objects.create(user=request.user,req_no=application)
             req.save()
         return render(request, 'home/application.html', context)
