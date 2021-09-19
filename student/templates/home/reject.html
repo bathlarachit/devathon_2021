@@ -8,27 +8,51 @@
 {{list.message}}
 </div>
 
-<p>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr class="table-light">
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">birthdate</th>
+      <th scope="col">aadhar</th>
+      <th scope="col">address</th>
+      <th scope="col">department</th>
+      <th scope="col">Specialization</th>
+      <th scope="col">Category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="table-danger">
+      <th scope="col">-</th>
+      <th scope="col"> <p>
   {{list.req.req_no.name}}
-</p>
-<p>
+</p> </th>
+      <th scope="col"><p>
   {{list.req.req_no.birthdate}}
-</p>
-<p>
+</p></th>
+<th scope="col"><p>
   {{list.req.req_no.aadhar}}
 </p>
-<p>
+</th>
+      <th scope="col"><p>
   {{list.req.req_no.address}}
-</p>
-<p>
+</p></th>
+       <th scope="col"><p>
   {{list.req.req_no.department}}
-</p>
-<p>
+</p></th>
+        <th scope="col"><p>
   {{list.req.req_no.specialization}}
-</p>
-<p>
+</p></th>
+         <th scope="col"><p>
   {{list.req.req_no.category}}
-</p>
+</p></th>
+    </tr>
+  </tbody>
+</table>
+
 </div>
 
 {% endblock %}
+
+

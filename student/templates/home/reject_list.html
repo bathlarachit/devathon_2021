@@ -1,18 +1,28 @@
 {% extends 'base.html' %}
+{% block reject_listactive %}active{% endblock reject_listactive %}
 
 {% block body %}
-
-  <ol>
-
-
-  {% for l in list %}
-
-  <li>
+<div class="container" style="margin:50px;">
+    <table class="table">
+  <thead class="thead-dark">
+    <tr class="table-light">
+      <th scope="col">#</th>
+      <th scope="col">Name of the Applicant</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="table-light">
+   {% for l in list %}
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>     
 <a href="/student/Rejected_detail/{{l.pk}}/">
   {{l.req_no.name}}
 </a>
-  </li>
+     </td>
+    {% endfor  %}
 
-  {% endfor %}
-    </ol>
+    </tr>
+  </tbody>
+</table>
+</div>
 {%  endblock %}

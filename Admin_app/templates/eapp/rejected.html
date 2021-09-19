@@ -1,18 +1,32 @@
 {% extends 'eapp/base.html' %}
 {% block body %}
 
- <h2>
-   <em>Rejected List</em>
- </h2>
- <ol>
-   {% for l in list %}
-   <li>
-     <a href="/Rejected_detail/{{l.pk}}/">
-     <p>{{l.req_no.name}}</p></a>
-   </li>
 
-   {% endfor  %}
- </ol>
+ <h2 style="text-align:center;font-size:30px;margin-top:10px;margin-bottom:10px;color:red;">
+   Rejected List
+ </h2>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr class="table-light">
+      <th scope="col">#</th>
+      <th scope="col">Name of the Applicant</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="table-light">
+   {% for l in list %}
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>     <a href="/Rejected_detail/{{l.pk}}/">
+     <p>{{l.req_no.name}}</p></a>
+     </td>
+    {% endfor  %}
+
+    </tr>
+  </tbody>
+</table>
+ 
 
 
 {% endblock %}
+

@@ -1,18 +1,28 @@
  {% extends 'eapp/base.html' %}
  {% block body %}
 
-  <h2>
-    <em>Pending List</em>
-  </h2>
-  <ol>
-    {% for l in list %}
-    <li>
+ <h2 style="text-align:center;font-size:30px;margin-top:10px;margin-bottom:10px;">
+   Pending List
+ </h2>
+<table class="table">
+  <thead class="thead-dark">
+    <tr class="table-light">
+      <th scope="col">#</th>
+      <th scope="col">Name of the Applicant</th>
+    </tr>
+  </thead>
+  <tbody>
+     {% for l in list %}
+    <tr class="table-light">
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>     
       <a href="/detail/{{l.pk}}/">
       <p>{{l.req_no.name}}</p></a>
-    </li>
-
+     </td>
+         </tr>
     {% endfor  %}
-  </ol>
 
+  </tbody>
+</table>
 
  {% endblock %}
