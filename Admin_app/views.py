@@ -26,11 +26,16 @@ class Confirmed(SuperUserMixin,ListView):
         return qs.filter(status__exact='confirmed')
 class Rejected(SuperUserMixin,ListView):
     template_name ='eapp/rejected.html'
-    model=models.Requests
+    model=models.Rejected
+    context_object_name='list'
+
+class RStudent(LoginRequiredMixin,ListView):
+    template_name ='eapp/rejected.html'
+    model=models.Rejected
     context_object_name='list'
     def get_queryset(self):
-        qs=super(Rejected,self).get_queryset()
-        return qs.filter(status__exact='rejected')
+        qs=super(Pending,self).get_queryset()
+        return qs.filter(status__exact='pending')
 
 def ViewDetail(request,pk):
     if request.user.is_superuser:
