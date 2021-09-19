@@ -56,7 +56,7 @@ def application(request):
         context['json_cs_strings'] = json_cs_strings
         context['json_b_strings'] = json_b_strings
         context['subjects']=SUBJECT_CHOICES
-
+        context['vis']=True
 
         if request.method=='POST':
             name=request.POST['name']

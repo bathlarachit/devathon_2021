@@ -1,0 +1,20 @@
+{% extends 'eapp/base.html' %}
+
+
+{% block body %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+
+  <h4>Accepted Applications</h4>
+
+  </div>
+<ol>
+  {% for l in list %}
+<li>
+    <a href="/Rejected_detail/{{l.pk}}/">
+    <p>{{l.req_no.name}}</p></a>
+  </li>
+</li>
+  {% endfor %}
+</ol>
+
+{% endblock %}
