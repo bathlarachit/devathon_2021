@@ -1,0 +1,34 @@
+{% extends  'base.html' %}
+
+{% block body %}
+<div class="container">
+
+<br>
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+{{list.message}}
+</div>
+
+<p>
+  {{list.req.req_no.name}}
+</p>
+<p>
+  {{list.req.req_no.birthdate}}
+</p>
+<p>
+  {{list.req.req_no.aadhar}}
+</p>
+<p>
+  {{list.req.req_no.address}}
+</p>
+<p>
+  {{list.req.req_no.department}}
+</p>
+<p>
+  {{list.req.req_no.specialization}}
+</p>
+<p>
+  {{list.req.req_no.category}}
+</p>
+</div>
+
+{% endblock %}

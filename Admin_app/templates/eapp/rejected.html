@@ -1,0 +1,18 @@
+{% extends 'eapp/base.html' %}
+{% block body %}
+
+ <h2>
+   <em>Rejected List</em>
+ </h2>
+ <ol>
+   {% for l in list %}
+   <li>
+     <a href="/Rejected_detail/{{l.pk}}/">
+     <p>{{l.req_no.name}}</p></a>
+   </li>
+
+   {% endfor  %}
+ </ol>
+
+
+{% endblock %}

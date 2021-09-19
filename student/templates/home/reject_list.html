@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+  <ol>
+
+
+  {% for l in list %}
+
+  <li>
+<a href="/student/Rejected_detail/{{l.pk}}/">
+  {{l.req_no.name}}
+</a>
+  </li>
+
+  {% endfor %}
+    </ol>
+{%  endblock %}

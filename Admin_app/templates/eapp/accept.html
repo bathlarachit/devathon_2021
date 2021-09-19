@@ -1,0 +1,35 @@
+{% extends 'eapp/base.html' %}
+{% block body %}
+<br>
+
+{% if dis  %}
+
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+<strong>Registration Number Already Exists!</strong> Enter Unique Registration number.
+<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% else %}
+{% endif %}
+
+
+    <h4 class="alert alert-success">
+      <em>
+        Accepted The Application
+      </em>
+    </h4>
+        <form  method="POST">
+            {% csrf_token %}
+          <input type="number"  required name="reg" class="form-control" placeholder="Enter Registration Number">
+          <br>
+
+            <div class="d-grid">
+                  <input type="submit"  class="btn btn-outline-success " value="Submit">
+            </div>
+
+
+
+
+        </form>
+
+
+ {% endblock %}
