@@ -2,19 +2,29 @@
 
 
 {% block body %}
-<div class="alert alert-success alert-dismissible fade show" role="alert">
+<div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top:50px;">
 
   <h4>Accepted Applications</h4>
 
   </div>
-<ol>
-  {% for l in list %}
-<li>
-    <a href="/accept_detail/{{l.pk}}/">
-    <p>{{l.req_no.name}}</p></a>
-  </li>
-</li>
-  {% endfor %}
-</ol>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr class="table-light">
+      <th scope="col">#</th>
+      <th scope="col">Name of the Applicant</th>
+    </tr>
+  </thead>
+  <tbody>
+     {% for l in list %}
+    <tr class="table-light">
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>    <a href="/accept_detail/{{l.pk}}/">
+    <p>{{l.req_no.name}}</p></a></td>
+         </tr>
+    {% endfor  %}
+
+  </tbody>
+</table>
 
 {% endblock %}

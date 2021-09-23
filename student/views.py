@@ -154,6 +154,5 @@ def handleLogout(request):
         return redirect('home')
 
 def Rejected_detail(request,pk):
-
     qs = models.Rejected.objects.get(id=pk)
     return render(request,'home/reject.html',{'list':qs})

@@ -2,35 +2,46 @@
 
 {% block body  %}
 
-<div class="alert alert-success alert-dismissible fade show" role="alert">
+<div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top:50px;">
 <strong>
   <p>
     Registration Number- {{code.Registration_Number}}
   </p>
 </strong>
-</div>
+</div> 
 
-<p>
-  {{list.req_no.name}}
-</p>
-<p>
-  {{list.req_no.birthdate}}
-</p>
-<p>
-  {{list.req_no.address}}
-</p>
-<p>
-  {{list.req_no.aadhar}}
-</p>
-<p>
-  {{list.req_no.gender}}
-</p>
-<p>
-  {{list.req_no.department}}
-</p>
-<p>
-  {{list.req_no.specialization}}
-</p>
+<table class="table" style="margin-top:50px;">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Birthdate</th>
+      <th scope="col">Address</th>
+      <th scope="col">Aadhar</th>
+      <th scope="col">Gender</th>
+      <th scope="col">category</th>
+      <th scope="col">Specialization</th>
+      <th scope="col">Pwd</th>
+      <th scope="col">photo</th>
+      <th scope="col">Documents</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="light">
+      <th scope="row">1</th>
+      <td>{{list.req_no.name}}</td>
+      <td>{{list.req_no.birthdate}}</td>
+      <td>{{list.req_no.address}}</td>
+      <td>{{list.req_no.aadhar}}</td>
+      <td>{{list.req_no.gender}}</td>
+      <td>{{list.req_no.department}}</td>
+      <td>{{list.req_no.specialization}}</td>
+      <td>{{list.req_no.pwd}}</td>
+      <td><a href="/media/{{list.req_no.photo}}">photo<a></td>
+      <td><a href="/media/{{list.req_no.documents}}">Documents<a></td>
+    </tr>
+  </tbody>
+</table>
 
 
 {% endblock %}

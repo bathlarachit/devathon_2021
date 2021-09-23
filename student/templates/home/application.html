@@ -14,7 +14,7 @@
 {% csrf_token %}
   <div class="mb-3">
     <label for="name" class="form-label">Name</label>
-    <input type="text" class="form-control" id="name" name="name" aria-describedby="name">
+    <input type="text" onblur="check_username()"  class="form-control" id="name" name="name" aria-describedby="name">
   </div>
     <div class="mb-3">
     <label for="birthdate" class="form-label">Date of Birth</label>
@@ -22,7 +22,7 @@
   </div>
     <div class="mb-3">
     <label for="aadhar" class="form-label">Aadhar Card Number</label>
-    <input type="text" class="form-control" id="aadhar" name="aadhar" aria-describedby="aadhar">
+    <input type="text" onblur="check_aadhar()" class="form-control" id="aadhar" name="aadhar" aria-describedby="aadhar">
   </div>
     <div class="mb-3">
     <label for="address" class="form-label">Address</label>
@@ -32,13 +32,13 @@
     <div class="mb-3">
     <h5>Gender</h5>
 <div class="radio">
-  <label><input type="radio" name="gender" id="gender" value="Male">Male</label>
+  <label><input type="radio" name="gender" id="gender1" value="Male">Male</label>
 </div>
 <div class="radio">
-  <label><input type="radio" name="gender" id="gender" value="Female">Female</label>
+  <label><input type="radio" name="gender" id="gender2" value="Female">Female</label>
 </div>
 <div class="radio">
-  <label><input type="radio" name="gender" id="gender" value="Other">Prefer Not to Say</label>
+  <label><input type="radio" name="gender" id="gender3" value="Other">Prefer Not to Say</label>
 </div>
 </div>
 <div class="input-group mb-3">
@@ -65,26 +65,26 @@
     <div class="mb-3">
     <h5>Category</h5>
 <div class="radio">
-  <label><input type="radio" name="category" id="category" value="SC">SC</label>
+  <label><input type="radio" name="category" id="category1" value="SC">SC</label>
 </div>
 <div class="radio">
-  <label><input type="radio" name="category" id="category" value="ST">ST</label>
+  <label><input type="radio" name="category" id="category2" value="ST">ST</label>
 </div>
 <div class="radio">
-  <label><input type="radio" name="category" id="category" value="OBC">OBC</label>
+  <label><input type="radio" name="category" id="category3" value="OBC">OBC</label>
 </div>
 <div class="radio">
-  <label><input type="radio" name="category" id="category" value="General">General</label>
+  <label><input type="radio" name="category" id="category4" value="General">General</label>
 </div>
 </div>
 
    <div class="mb-3">
     <h5>PWD</h5>
 <div class="radio">
-  <label><input type="radio" name="pwd" id="pwd" value="yes">Applicable</label>
+  <label><input type="radio" name="pwd" id="pwd1" value="yes">Applicable</label>
 </div>
 <div class="radio">
-  <label><input type="radio" name="pwd" id="pwd" value="no">Not applicable</label>
+  <label><input type="radio" name="pwd" id="pwd2" value="no">Not applicable</label>
 </div>
 </div>
 
@@ -96,7 +96,7 @@
 
       <div class="mb-3">
     <label for="photo">Upload Passport Size Photo :</label>
-    <input type="file" class="form-control-file" id="photo" name="photo">
+    <input type="file" onblur="getExtension()" class="form-control-file" id="photo" name="photo">
   </div>
 
       <div class="mb-3">
@@ -173,6 +173,40 @@
                 }
             });
         });
+
+  function check_username() {
+  let x = document.getElementById("name");
+  if(x.value.length>20)
+  {
+  alert("Name must be less than 20 letters");
+  x.value="";
+  }
+  else
+  {
+  x.value = x.value.toUpperCase();
+  } 
+}
+  function check_aadhar() {
+  let x = document.getElementById("aadhar");
+      if(x.value.length !== 12)
+  {
+  alert("Aadhar card number must of length 12.");
+  x.value="";
+  }
+}
+//function getExtension() {
+  //var parts = filename.split('.');
+  //return parts[parts.length - 1];
+//  var up = document.getElementById('photo');
+//  let chk=up.value.split('.').pop();
+//  chk=chk.toLowerCase();
+//  console.log(chk);
+//  if (chk != 'png' || chk !='jpeg' || chk !='jpg')
+//  {
+//    up.value=null;
+//  }
+//}
+
     </script>
 
 {% endblock body %}

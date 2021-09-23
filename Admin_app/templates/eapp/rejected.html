@@ -2,10 +2,12 @@
 {% block body %}
 
 
- <h2 style="text-align:center;font-size:30px;margin-top:10px;margin-bottom:10px;color:red;">
+
+<div class="alert alert-danger" role="alert" style="margin-top:50px">
+   <h2 style="text-align:center;font-size:30px;margin-top:10px;margin-bottom:10px;color:red;">
    Rejected List
  </h2>
-
+</div>
 <table class="table">
   <thead class="thead-dark">
     <tr class="table-light">
@@ -14,13 +16,17 @@
     </tr>
   </thead>
   <tbody>
-    <tr class="table-light">
+
    {% for l in list %}
+       <tr class="table-light">
       <th scope="row">{{ forloop.counter }}</th>
-      <td>     <a href="/Rejected_detail/{{l.pk}}/">
+      <td>     <a href="/rejected_detail/{{l.pk}}/">
      <p>{{l.req_no.name}}</p></a>
      </td>
+     </tr>
     {% endfor  %}
+
+
 
     </tr>
   </tbody>

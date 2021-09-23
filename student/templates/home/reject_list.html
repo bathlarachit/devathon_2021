@@ -11,17 +11,15 @@
     </tr>
   </thead>
   <tbody>
+     {% for l in list %}
     <tr class="table-light">
-   {% for l in list %}
       <th scope="row">{{ forloop.counter }}</th>
       <td>     
-<a href="/student/Rejected_detail/{{l.pk}}/">
-  {{l.req_no.name}}
-</a>
+<a href="/student/Rejected_detail/{{l.pk}}/">{{l.req_no.name}}</a>
      </td>
-    {% endfor  %}
-
     </tr>
+    {% endfor %}
+
   </tbody>
 </table>
 </div>
